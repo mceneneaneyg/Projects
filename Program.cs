@@ -1,8 +1,12 @@
+using Microsoft.EntityFrameworkCore;
+using schoolManagementApp.mvc.Data;
+
 var builder = WebApplication.CreateBuilder(args);
+var conn = builder.Configuration.GetConnectionString("GearsSquadDBConnection");
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-
+builder.Services.AddDbContext<GearsSquadDbContext>(q => q.UseSqlServer(conn));    
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
